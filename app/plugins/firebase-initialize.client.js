@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need]
 import { initializeApp } from "firebase/app";
-import { getVertexAI, getGenerativeModel } from "firebase/vertexai";
+import { getVertexAI, getGenerativeModel, Schema } from "firebase/vertexai";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,8 +23,23 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   // Vertex AI service　を初期化
   const vertexAI = getVertexAI(firebaseApp);
+  // スキーマの指定
+  const jsonSchema = Schema.object({
+    properties: {
+      hashtags: Schema.array({
+        items: Schema.string(),
+      }),
+    }
+  });
   // Gemini 1.5 model　を指定　（他の Gemini Versionも指定可能）
-  const model = getGenerativeModel(vertexAI, { model: "gemini-1.5-flash" });
+  const model = getGenerativeModel(vertexAI, 
+    { 
+      model: "gemini-1.5-flash" ,
+      generationConfig: {
+        responseMimeType: "application/json",
+        responseSchema: jsonSchema
+      }, 
+    });
 
   return {
     provide: {
