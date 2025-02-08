@@ -1,6 +1,6 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp, firebase } from "firebase/app";
-import { getAuth } from 'firebase/auth'
+// Import the functions you need from the SDKs you need]
+import { initializeApp } from "firebase/app";
+import { getVertexAI, getGenerativeModel } from "firebase/vertexai";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,10 +19,16 @@ export default defineNuxtPlugin((nuxtApp) => {
   };
 
   // Initialize Firebase or get existing app
-  const app = initializeApp(firebaseConfig);
+  const firebaseApp = initializeApp(firebaseConfig);
 
-  // Firebase 認証の取得
-  // const auth = getAuth(firebaseApp)
+  // Vertex AI service　を初期化
+  const vertexAI = getVertexAI(firebaseApp);
+  // Gemini 1.5 model　を指定　（他の Gemini Versionも指定可能）
+  const model = getGenerativeModel(vertexAI, { model: "gemini-1.5-flash" });
 
-  // nuxtApp.provide('auth', auth)
+  return {
+    provide: {
+      firebase: { model },
+    },
+  };
 })
