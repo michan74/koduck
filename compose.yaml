@@ -1,0 +1,18 @@
+services:
+  node:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - ./app:/app
+      - npm_volume:/usr/local/lib
+    command: npm run dev
+    tty: true
+    ports: 
+      - 3000:3000
+      - 9005:9005
+    # networks:
+    #   - cinnamon-network
+
+volumes:
+  npm_volume: 
