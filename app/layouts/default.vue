@@ -1,14 +1,31 @@
 <template>
   <v-app>
     <!-- header -->
+    <v-app-bar
+      color="primary"
+      density="compact"
+      flat
+    >
+      <!-- <template v-slot:prepend>
+        ろご
+      </template> -->
+
+      <v-app-bar-title>
+        # はっしゅたぐ工房
+      </v-app-bar-title>
+
+      <!-- <template v-slot:append>
+        <v-btn icon="mdi-dots-vertical"></v-btn>
+      </template> -->
+    </v-app-bar>
     
-    
-    <NuxtPage />
-    
+    <v-main>
+      <NuxtPage />
+    </v-main>
     
     <!-- footer -->
     <v-footer
-      class="bg-indigo-lighten-1 text-center d-flex flex-column"
+      class="bg-primary text-center d-flex flex-column"
     >
       <div>
         <v-btn
@@ -23,7 +40,7 @@
       <v-divider></v-divider>
 
       <div>
-        {{ new Date().getFullYear() }} — <strong>どらやき</strong>
+        <strong>© 2025 dorayaki, All Rights Reserved</strong>
       </div>
     </v-footer>
   </v-app>

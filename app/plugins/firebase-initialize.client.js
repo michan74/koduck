@@ -31,10 +31,27 @@ export default defineNuxtPlugin((nuxtApp) => {
       }),
     }
   });
+
+  // 関数の指定
+  // 良いAPIがあったら、使う
+  // const fetchHashtag = async ({ location, date }) => {
+
+  //   // TODO(developer): Write a standard function that would call to an external weather API.
+  
+  //   // For demo purposes, this hypothetical response is hardcoded here in the expected format.
+  //   return {
+  //     temperature: 38,
+  //     chancePrecipitation: "56%",
+  //     cloudConditions: "partlyCloudy",
+  //   };
+  // }
+
+
   // Gemini 1.5 model　を指定　（他の Gemini Versionも指定可能）
   const model = getGenerativeModel(vertexAI, 
     { 
       model: "gemini-1.5-flash" ,
+      systemInstruction: "You are a top instagram influencer.",
       generationConfig: {
         responseMimeType: "application/json",
         responseSchema: jsonSchema
