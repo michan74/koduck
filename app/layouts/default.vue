@@ -1,23 +1,19 @@
 <template>
   <v-app>
     <!-- header -->
-    <v-app-bar
+    <!-- <v-app-bar
       color="primary"
       density="compact"
       flat
     >
-      <!-- <template v-slot:prepend>
-        ろご
-      </template> -->
-
       <v-app-bar-title>
         # はっしゅたぐ工房
-      </v-app-bar-title>
+      </v-app-bar-title> -->
 
       <!-- <template v-slot:append>
         <v-btn icon="mdi-dots-vertical"></v-btn>
       </template> -->
-    </v-app-bar>
+    <!-- </v-app-bar> -->
     
     <v-main>
       <NuxtPage />

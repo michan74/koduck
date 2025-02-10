@@ -54,7 +54,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       systemInstruction: "You are a top instagram influencer.",
       generationConfig: {
         responseMimeType: "application/json",
-        responseSchema: jsonSchema
+        responseSchema: jsonSchema,
+        temperature: 0.9,
       }, 
     });
 

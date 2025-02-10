@@ -1,5 +1,10 @@
 <template>
-  <div class="px-5 mx-auto my-4 page-container">
+  <div class="px-5 mx-auto my-15 page-container">
+    <div class="d-flex align-center justify-center fill-height">
+      <img src="~/public/images/logo.png" alt="logo" height="100px" />
+    </div>
+
+
     <div class="text-body-1 my-3">画像に合わせたハッシュタグをつくります。↓↓</div>
     
     <!-- アラート -->
@@ -255,9 +260,10 @@ export default {
       }
 
       let prompt = `
-        ${setting}この${this.description}の画像の内容(テキスト、人物、風景、物)、SNS投稿時のハッシュタグ候補を${this.selectedQuantity}個出してください。 \
+        ${setting}この${this.description}の画像の内容(テキスト、人物、風景、物)、
+        SNS投稿時のハッシュタグ候補を${this.selectedQuantity}個出してください。 \
         <rule> \
-        - 次に示す言語で作成して: ${this.selectedLanguages} \
+        - 次に示す言語で作成してください: ${this.selectedLanguages} \
         - # は含めないでください \
         - 年齢や性別は特定できないように \
         - 奇想天外な候補を1個以上含める \
