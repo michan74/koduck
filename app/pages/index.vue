@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-5 my-4">
+  <div class="px-5 mx-auto my-4 page-container">
     <div class="text-body-1 my-3">画像に合わせたハッシュタグをつくります。↓↓</div>
     
     <!-- アラート -->
@@ -74,6 +74,7 @@
       :items="characters"
       item-title="text"
       item-value="value"
+      clearable
     ></v-select>
 
     <!-- 作成ボタン -->
@@ -161,7 +162,6 @@ export default {
       { text: "✧ °キラキラ", value: "pokopoko" },
       { text: "𖧧˒˒丁寧な暮らし", value: "teinei" },
     ],
-    ngWords: "",
   }),
   watch: {
     selectedHashtags: {
@@ -248,25 +248,19 @@ export default {
           pokopoko: "20代女性、一人暮らし、彼氏持ち、女性らしい服を着る、パパ活してるかと思うくらい金持ちで、自分の容姿やポジションをよく魅せたい人です。",
           teinei: "30代女性、既婚、毎日自炊をする、麻やリネンの服を着る、アロマオイルとか使いがちで、自分の生活が素敵だと魅せたい人です。",
         };
-        // const characterTextMap = {
-        //   pokopoko: "自分の容姿やポジションをよく魅せたい、キラキラ女子界隈の面白い人です。",
-        //   teinei: "自分の生活が素敵だと魅せたい丁寧な暮らし界隈の面白い人です。",
-        // };
         setting = `あなたは${characterTextMap[this.selectedCharacter]}です。`;
       } else {
-        setting = `あなたはSNS投稿をバズらせようとしている人です。`;
+        setting = `あなたはSNS名人です。`;
       }
 
-      let prompt = `<command> ${setting}この画像見て、SNS投稿時のハッシュタグ候補を出してほしい \
-        以下のルールに従ってください \
+      let prompt = `<command> ${setting}この${this.description}の画像の内容(テキスト、人物、風景、物)、SNS投稿時のハッシュタグ候補を出せ \
         </command> \
         <rule> \
-        - ハッシュタグとは、画像の内容を表すキーワードです \
         - 次に示す言語で作成して: ${this.selectedLanguages} \
         - ${this.selectedQuantity}個 \
         - # は含めないでください \
         - 年齢や性別は特定できないように \
-        - この画像は、${this.description}です。 \
+        - 奇想天外な候補を1個以上含める \
         </rule>`;
       console.log(prompt);
       return prompt;
@@ -278,3 +272,13 @@ export default {
   }
 }
 </script> 
+<style scoped>
+
+/* PCのみ */
+@media (min-width: 600px) {
+  .page-container{
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+</style>
