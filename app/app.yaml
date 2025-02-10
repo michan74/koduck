@@ -1,0 +1,13 @@
+runtime: python39  # Python 3.9 を利用（静的ファイルホスティング用）
+# entrypoint: tar -xzf .output/public/_nuxt.tar.gz && python -m http.server 8080
+
+handlers:
+  # ルートのリクエストを index.html にマッピング
+  - url: /
+    static_files: .output/public/index.html
+    upload: .output/public/index.html
+
+  # 他の全てのファイルを適切に配信
+  - url: /(.*)
+    static_files: .output/public/\1
+    upload: .output/public/(.*)
