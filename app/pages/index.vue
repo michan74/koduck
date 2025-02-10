@@ -79,8 +79,9 @@
 
     <!-- 作成ボタン -->
     <div class="d-flex align-center justify-center fill-height">
-      <v-btn @click="onClick" variant="flat" color="primary" width="90%" height="80px">つくる ´•ᴥ•`</v-btn>
+      <v-btn @click="onClick" variant="flat" color="primary" width="90%" height="60px">つくる ´•ᴥ•`</v-btn>
     </div>
+
     <template v-if="isShowProgress">
         <div class="d-flex align-center justify-center fill-height my-8">
         <!-- くるくる -->
@@ -107,7 +108,7 @@
             <v-chip
               v-for="(hashTag, index) in hashTags"
               :key="index"
-              color="indigo"
+              color="indigo-accent-1"
               text-color="white"
               class="ma-1"
               :variant="selectedHashtags.includes(hashTag) ? 'flat' : 'outlined'"
@@ -243,7 +244,7 @@ export default {
     // プロンプト英語？？変数いれる
     generatePrompt() {
       let setting = "";
-      if(this.selectedCharacter.length > 0) {
+      if(this.selectedCharacter?.length > 0) {
         const characterTextMap = {
           pokopoko: "20代女性、一人暮らし、彼氏持ち、女性らしい服を着る、パパ活してるかと思うくらい金持ちで、自分の容姿やポジションをよく魅せたい人です。",
           teinei: "30代女性、既婚、毎日自炊をする、麻やリネンの服を着る、アロマオイルとか使いがちで、自分の生活が素敵だと魅せたい人です。",
@@ -253,11 +254,10 @@ export default {
         setting = `あなたはSNS名人です。`;
       }
 
-      let prompt = `<command> ${setting}この${this.description}の画像の内容(テキスト、人物、風景、物)、SNS投稿時のハッシュタグ候補を出せ \
-        </command> \
+      let prompt = `
+        ${setting}この${this.description}の画像の内容(テキスト、人物、風景、物)、SNS投稿時のハッシュタグ候補を${this.selectedQuantity}個出してください。 \
         <rule> \
         - 次に示す言語で作成して: ${this.selectedLanguages} \
-        - ${this.selectedQuantity}個 \
         - # は含めないでください \
         - 年齢や性別は特定できないように \
         - 奇想天外な候補を1個以上含める \
